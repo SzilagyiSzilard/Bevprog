@@ -18,9 +18,7 @@ int main()
 	return 0;
 }
 
-//Ez az egész függvény nem fog működni, 
-//mert "x" és "y" értékét vette át "a-ra" és "b"-re, 
-//de nem ad vissza/nem változtatja meg.
+//nem jó , x és y értékeit használja , nem ad vissza nekik értéket , nem változik semmi . 
 void swap_v(int a, int b)
 {
 	int temp;
@@ -29,9 +27,7 @@ void swap_v(int a, int b)
 	b = temp;
 }
 
-//Ez a függvény le fog futni és működni is fog,
-//mert referenciaként adtuk át "x"-et és "y"-t,
-//tehát "x" és "y" értéke fog változni!
+//x és y referenciaként van beolvasva , így értékük változik , müködik. 
 void swap_r(int& a, int& b)
 {
 	int temp;
@@ -40,7 +36,7 @@ void swap_r(int& a, int& b)
 	b = temp;
 }
 
-//Ez az egész függvény nem fog lefordulni, mert read-only!
+//Nem jó x és y read-only-ba van beolvasva
 /*
 void swap_cr(const int& a, const int& b)
 {
@@ -58,13 +54,13 @@ void feladat1()
 	cout << "x: " << x << '\n';
 	cout << "y: " << y << '\n';
 
-	//swap_r(x, y); //Lefordul, működik!
-	//swap_v(x, y); //Lásd a függvénynél!
-	//swap_cr(x, y); //Lásd a függvénynél!
+	//swap_r(x, y); 
+	//swap_v(x, y); 
+	//swap_cr(x, y); 
 
-	//swap_r(7, 9); //itt nem fog felcserélődni hiszen nincs definiálva a változó amire hivatkozhatna a referencia a swap_r függvényben csak egy értéket adunk át.
-	//swap_v(7, 9); //itt sem cserélődik fel ezért
-	//swap_cr(7, 9); //nem fog müködni konstans változót nem modosíthatunk 
+	//swap_r(7, 9); //swap_r-nek változók kellenek értékekel nem müködik nem tud mire hivatkozni a referencia
+	//swap_v(7, 9); //még mindig semmi .
+	//swap_cr(7, 9); //nem megy ez se konstans változót nem modosíthatunk 
 
 	cout << "x: " << x << '\n';
 	cout << "y: " << y << '\n';
@@ -77,13 +73,13 @@ void feladat2()
 	cout << "cx: " << cx << '\n';
 	cout << "cy: " << cy << '\n';
 
-	//swap_r(cx,cy); //forditó: "error: binding reference of type ‘int&’ to ‘const int’ discards qualifiers".
-	//swap_v(cx,cy); //konstans változót nem lehet felüldefiniálni
-	//swap_cr(cx,cy); //nem fog működni, mind2 konstans
+	//swap_r(cx,cy); // "error: binding reference of type ‘int&’ to ‘const int’ discards qualifiers".
+	//swap_v(cx,cy); //nem megy mert konstansak a változók 
+	//swap_cr(cx,cy); // konstans
 
-	//swap_r(7.7,9.9); //Nem konstans!
-	//swap_v(7.7,9.9); //lefordul de nem működik
-	//swap_cr(7.7,9.9); //nem fut le azóta sem sajnos
+	//swap_r(7.7,9.9); //nincs változó
+	//swap_v(7.7,9.9); //továbra se történik semmi , de lefordul 
+	//swap_cr(7.7,9.9); // nem ... továbra sem..
 
 	cout << "cx: " << cx << '\n';
 	cout << "cy: " << cy << '\n';
@@ -99,10 +95,10 @@ void feladat3()
 	//swap_r(dx, dy);
 	//swap_v(dx, dy);
 	//swap_cr(dx, dy);
-		//doubleből nem tud intet csinálni
-	//swap_r(7.7, 9.9);
-	//swap_v(7.7, 9.9);
-	//swap_cr(7.7, 9.9);
+		//double - int nem keveredik :) 
+	//swap_r(7.7, 9.9); //ugyan az mint 1-el fentebb
+	//swap_v(7.7, 9.9); //ugyan az mint 1-el fentebb
+	//swap_cr(7.7, 9.9); //ugyan az mint 1-el fentebb
 
 	cout << "dx: " << dx << '\n';
 	cout << "dy: " << dy << '\n';
